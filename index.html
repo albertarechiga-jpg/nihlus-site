@@ -1356,12 +1356,14 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
     <form class="brief" id="brief">
       <label>Your name<input id="bName" autocomplete="name"></label>
       <label>Company<input id="bCo" autocomplete="organization"></label>
+      <label class="full">Work email<input id="bEmail" type="email" autocomplete="email" required placeholder="you@company.com"></label>
       <label>Plan of interest<select id="bPlan"><option>Help me choose</option><option>Protect</option><option>Command</option><option>Managed Command</option></select></label>
       <label>Trailers<input id="bN" type="number" min="1" value="25"></label>
       <label class="full">What do you haul, and which lanes worry you?<textarea id="bWhat" placeholder="e.g. electronics, Laredo to Chicago, weekend drops"></textarea></label>
-      <button class="btn" type="submit">Build my pilot brief</button>
+      <input type="checkbox" id="bBot" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0" aria-hidden="true">
+      <button class="btn" type="submit">Request my pilot</button>
       <div class="brief-out" id="briefOut" hidden></div>
-      <p class="brief-note">Nothing is sent or stored. Copy the brief and send it to the Nihlus Vision team.</p>
+      <p class="brief-note" id="briefNote">Your request goes straight to the Nihlus Vision team. We'll reply by email.</p>
     </form>
   </div>
 </div></section>
@@ -2085,15 +2087,27 @@ function buildMap(svg){
 
 /* ================= Pilot brief ================= */
 (function(){
-  const f=document.getElementById('brief'),out=document.getElementById('briefOut');
+  const f=document.getElementById('brief'),out=document.getElementById('briefOut'),note=document.getElementById('briefNote');
+  const KEY='013103df-5ce4-4b02-8e80-f20f2bb07844';
   f.addEventListener('submit',e=>{e.preventDefault();
+    if(document.getElementById('bBot').checked)return;
     const v=id=>document.getElementById(id).value.trim();
-    const txt=`NIHLUS VISION · PILOT BRIEF\nName: ${v('bName')||'—'}\nCompany: ${v('bCo')||'—'}\nPlan: ${v('bPlan')}\nTrailers: ${v('bN')||'—'}\nCargo and lanes: ${v('bWhat')||'—'}`;
-    out.hidden=false;out.textContent=txt;
-    const btn=f.querySelector('.btn');
-    if(navigator.clipboard){navigator.clipboard.writeText(txt).then(()=>{btn.textContent='Brief copied';},()=>{selectOut();btn.textContent='Brief ready, select to copy';});}
-    else{selectOut();}
-    function selectOut(){const r=document.createRange();r.selectNodeContents(out);const s=getSelection();s.removeAllRanges();s.addRange(r);}
+    const txt=`NIHLUS VISION · PILOT BRIEF\nName: ${v('bName')||'—'}\nCompany: ${v('bCo')||'—'}\nEmail: ${v('bEmail')}\nPlan: ${v('bPlan')}\nTrailers: ${v('bN')||'—'}\nCargo and lanes: ${v('bWhat')||'—'}`;
+    const btn=f.querySelector('.btn'),label=btn.textContent;
+    btn.disabled=true;btn.textContent='Sending…';
+    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+      body:JSON.stringify({access_key:KEY,subject:'New Nihlus Vision pilot request',from_name:'nihlusvision.com',
+        name:v('bName'),company:v('bCo'),email:v('bEmail'),plan:v('bPlan'),trailers:v('bN'),cargo_and_lanes:v('bWhat'),botcheck:''})})
+    .then(r=>r.json()).then(d=>{
+      if(!d.success)throw new Error(d.message||'failed');
+      btn.textContent='Request sent';
+      note.textContent="Thanks. Your pilot request is in and we'll reply by email.";
+      f.querySelectorAll('input,select,textarea').forEach(el=>el.disabled=true);
+    }).catch(()=>{
+      btn.disabled=false;btn.textContent=label;
+      out.hidden=false;out.textContent=txt;
+      note.textContent='We could not send that just now. Please try again, or copy the brief above and send it to the Nihlus Vision team.';
+    });
   });
 })();
 
