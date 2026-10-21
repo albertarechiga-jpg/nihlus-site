@@ -1308,7 +1308,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
         <span class="ct-ic" aria-hidden="true">⌖</span><b>Geofenced route</b><span class="ct-p">Nihlus Vision crawls the corridor, ignores traffic, checks unplanned stops and escalates detours.</span><span class="ct-go">Play demo ▶</span>
       </button>
       <button class="cmd-tile" type="button" data-xp="vision">
-        <span class="ct-ic" aria-hidden="true">◎</span><b>AI vision</b><span class="ct-p">The door camera spots a person and a bolt cutter, scores the threat and goes live.</span><span class="ct-go">Play demo ▶</span>
+        <span class="ct-ic" aria-hidden="true">◎</span><b>AI vision</b><span class="ct-p">The door camera spots a person and a bolt cutter, scores the threat and captures live evidence in the moment.</span><span class="ct-go">Play demo ▶</span>
       </button>
       <button class="cmd-tile" type="button" data-xp="bol">
         <span class="ct-ic" aria-hidden="true">✉</span><b>Fake-BOL proof</b><span class="ct-p">Spoofed emails and texts intercepted. Only a signed command-center reroute moves the load.</span><span class="ct-go">Play demo ▶</span>
@@ -1328,7 +1328,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
       <p>Three levels of protection, from camera security with live GPS to fully managed operations. Click the lens to step inside the camera and see what each plan costs and includes.</p>
       <ul class="vault-plans">
         <li><b>Protect</b><span>GPS, geofencing and camera security</span></li>
-        <li><b>Command <em>● Live</em></b><span>Live-streaming AI vision</span></li>
+        <li><b>Command <em>● Live</em></b><span>Live evidence capture with AI vision</span></li>
         <li class="wide"><b>Managed Command</b><span>Experts behind your fleet</span></li>
       </ul>
       <button class="btn primary" type="button" data-vault>Get pricing</button>
@@ -1597,7 +1597,7 @@ function buildMap(svg){
     at(2600,()=>{m.svg.classList.remove('jam');tweenT(0.64,1600);status.className='chip';status.textContent='Load 7741-TX · In corridor';});
     at(4400,()=>{m.svg.classList.add('bol');log('bad','05:03:27','Reroute attempt rejected','Driver received an emailed BOL with a new drop address from an unverified sender. Destination unchanged. Sender and message saved as evidence.');fire(0,'Destination locked · evidence saved');status.className='chip bad';status.textContent='Reroute attempt';});
     at(7200,()=>{m.svg.classList.remove('bol');m.svg.classList.add('hijack');tweenD(0.6,2200);log('bad','05:41:02','Corridor exit detected','Truck left the geofence on an unapproved exit. Manager and AI alerted at the same moment.');
-      setTimeout(()=>log('warn','05:41:06','Live stream started','Command camera went live on the rear door. AI vision tracking 1 person at the trailer.'),reduce?0:700);status.className='chip bad';status.textContent='Corridor exit · responding';eta.textContent='Off route · 1.8 mi outside corridor';});
+      setTimeout(()=>log('warn','05:41:06','Live evidence capture started','Command camera tapped in on the rear door. AI vision tracking 1 person at the trailer.'),reduce?0:700);status.className='chip bad';status.textContent='Corridor exit · responding';eta.textContent='Off route · 1.8 mi outside corridor';});
     at(8800,()=>{log('bad','05:41:19','Law enforcement dispatched','Live position shared with the nearest agency. Updates every 10 s.');fire(1,'Dispatched · live position shared');});
     at(10200,()=>{log('ok','05:41:40','Insurance claim populated','Claim NV-2291 drafted with timeline, 4 door photos and the GPS trail.');fire(2,'Claim NV-2291 · evidence attached');});
   }
@@ -1615,14 +1615,14 @@ function buildMap(svg){
       {v:'detect',k:'Camera-based alerts',h:'A photo, not just a ping.',p:'Motion at the rear door wakes the camera. The alert arrives with the picture, so you see who is at the trailer.'},
       {v:'timeline',k:'Incident visibility',h:'The whole incident in one place.',p:'Every trigger, photo and response lands on one timeline, ready to review or hand to your insurer.'},
       {v:'monitor',k:'Real-time monitoring',h:'Work the alerts that matter.',p:'Alerts are sorted by severity across the fleet, so your team handles the open door before the low battery.'}]},
-    {n:'Command',art:2,tag:'Intelligence. Control. Confidence.',d:'Live-streaming AI vision and full custody',img:'',lens:[.262,.541],lr:.046,hwName:'Live-streaming camera · hardware upgrade',live:true,mo:99,hw:399,feat:true,
-     f:['Live-streaming camera for AI vision','Biometric pickup verification','Locked-destination rerouting','AI-assisted security workflow','Full command center'],
+    {n:'Command',art:2,tag:'Intelligence. Control. Confidence.',d:'Live evidence capture and full custody',img:'',lens:[.262,.541],lr:.046,hwName:'Live evidence camera · hardware upgrade',live:true,mo:99,hw:399,feat:true,
+     f:['Tap-in live evidence with AI vision','Biometric pickup verification','Locked-destination rerouting','AI-assisted security workflow','Full command center'],
      scenes:[
-      {v:'live',k:'Live-streaming camera',h:'Go live on the door.',p:'The Command camera streams live video to the dashboard. AI vision and your team see the scene as it happens, not after.'},
+      {v:'live',k:'Live evidence capture',h:'Tap in for live evidence.',p:'When an alert fires, tap in and the Command camera captures live evidence in the moment. AI vision and your team see the scene as it happens, not after.'},
       {v:'bio',k:'Biometric pickup',h:'The right driver, or no pickup.',p:'The driver is verified against the approved carrier roster, and the BOL, seal and trailer are matched before the doors close.'},
       {v:'lock',k:'Locked destination',h:'A fake BOL can’t move the truck.',p:'Only the command center can change the drop address. A spoofed email or phone call to the driver is rejected and saved as evidence.'},
       {v:'ai',k:'AI-assisted workflow',h:'AI that acts, not just alerts.',p:'When a load leaves its corridor, the AI and your manager see it together. Dispatch and the insurance claim start in seconds.'}]},
-    {n:'Managed Command',art:3,tag:'Experts behind your fleet.',d:'Managed security operations',img:'',lens:[.225,.22],lr:.06,hwName:'Live-streaming camera · custom deployment',live:true,mo:149,hw:null,from:true,
+    {n:'Managed Command',art:3,tag:'Experts behind your fleet.',d:'Managed security operations',img:'',lens:[.225,.22],lr:.06,hwName:'Live evidence camera · custom deployment',live:true,mo:149,hw:null,from:true,
      f:['Human monitoring escalation','Law-enforcement coordination','Insurance claim support','Enterprise support and volume pricing'],
      scenes:[
       {v:'ops',k:'Human escalation',h:'People on watch, around the clock.',p:'Nihlus operators review what the AI escalates, day and night, and make the call when a load is at risk.'},
@@ -1969,8 +1969,8 @@ function buildMap(svg){
         typeLog($('#vLog'),[['02:31:49','Person detected · 97% confidence','y'],['02:31:50','Context: 02:31, not an approved stop, driver asleep in cab'],['02:32:31','Loitering at door · 42 s','y']],live,900);}},
       {t:'Tool at the lock',d:'A bolt cutter appears at the lock. Nihlus Vision classifies it as a tamper attempt.',cap:'Bolt cutter at the lock: tamper attempt',fx(live){root.firstElementChild.classList.add('s1','s2','s3');risk(92,'Critical','#ff3b30',live);$('#vSt').className='tagp r';$('#vSt').textContent='Tamper';
         typeLog($('#vLog'),[['02:32:36','Object: bolt cutter · 88%','r'],['02:32:36','Classified: TAMPER ATTEMPT','r'],['02:32:37','Door photos captured · 4 frames']],live,700);}},
-      {t:'Goes live and acts',d:'The Command camera goes live to your team. Nihlus Vision alerts the driver, the manager and recommends dispatch.',cap:'Live stream to the command center, AI takes action',fx(live){root.firstElementChild.classList.add('s1','s2','s3','s4');
-        typeLog($('#vLog'),[['02:32:38','Live stream started · command center','g'],['02:32:38','Cab alarm + driver alert sent','g'],['02:32:39','Manager paged · incident NV-0317 opened','g'],['02:32:40','Recommend: notify law enforcement','r']],live,700);
+      {t:'Captures live evidence and acts',d:'The Command camera captures live evidence for your team in the moment. Nihlus Vision alerts the driver, the manager and recommends dispatch.',cap:'Live evidence to the command center, AI takes action',fx(live){root.firstElementChild.classList.add('s1','s2','s3','s4');
+        typeLog($('#vLog'),[['02:32:38','Live evidence capture started · command center','g'],['02:32:38','Cab alarm + driver alert sent','g'],['02:32:39','Manager paged · incident NV-0317 opened','g'],['02:32:40','Recommend: notify law enforcement','r']],live,700);
         const c=()=>{const d=document.createElement('div');d.className='caret';$('#vLog').appendChild(d);const b=document.createElement('button');b.type='button';b.className='ai-act';b.dataset.go='response';b.textContent='Open response →';b.style.marginTop='8px';$('#vLog').appendChild(b);};live?later(c,3000):c();}}
     ]};
   function risk(p,label,col,live,delay=0){const f=()=>{$('#vBar').style.width=p+'%';const r=$('#vRisk');r.textContent=label;r.style.color=col;};live?later(f,delay):f();}
@@ -2023,7 +2023,7 @@ function buildMap(svg){
       {focus:'.inc',t:'Incident opened',d:'The corridor exit and tamper attempt become one incident with a running clock.',cap:'Incident opened automatically',fx(live){}},
       {focus:'#xActs',t:'AI lines up the actions',d:'Nihlus AI recommends the five things that should happen now, in order.',cap:'AI recommends every action at once',ms:4800,fx(live){ACTS.forEach((a,i)=>{const f=()=>addAct(a,i);live?later(f,300+i*450):f();});}},
       {focus:'#xActs',t:'Manager approves',d:'One tap approves law enforcement dispatch. You can tap Approve on any action yourself.',cap:'Manager approves: law enforcement dispatched',fx(live){const f=()=>doAct(0);live?later(f,900):f();const g=()=>doAct(4);live?later(g,2200):g();}},
-      {focus:'#xPkg',t:'Evidence package builds',d:'Photos, live video, GPS trail, BOL and the pickup record are packaged automatically.',cap:'Evidence package assembles itself',ms:6000,fx(live){const f=()=>doAct(2);live?later(f,200):f();$('#xPkgSt').className='tagp y';$('#xPkgSt').textContent='Building';
+      {focus:'#xPkg',t:'Evidence package builds',d:'Photos, live evidence clips, GPS trail, BOL and the pickup record are packaged automatically.',cap:'Evidence package assembles itself',ms:6000,fx(live){const f=()=>doAct(2);live?later(f,200):f();$('#xPkgSt').className='tagp y';$('#xPkgSt').textContent='Building';
         FILES.forEach((x,i)=>{const g=()=>{const d=document.createElement('div');d.className='file';d.innerHTML=`<span>${x[0]}</span><span class="bar3"><i></i></span><em>${x[1]}</em>`;$('#xPkg').appendChild(d);
           const bar=d.querySelector('i');live?requestAnimationFrame(()=>requestAnimationFrame(()=>bar.style.width='100%')):(bar.style.transition='none',bar.style.width='100%');};live?later(g,400+i*550):g();});
         const z=()=>{const d=document.createElement('div');d.className='zip';d.innerHTML='<span class="tagp g">Ready</span> Package NV-2291 · 6 items · timestamped and hashed';$('#xPkg').appendChild(d);$('#xPkgSt').className='tagp g';$('#xPkgSt').textContent='Ready';};
@@ -2035,7 +2035,7 @@ function buildMap(svg){
         i.querySelector('.tagp').className='tagp g';i.querySelector('.tagp').textContent='● Resolved';i.querySelector('span:nth-of-type(2)').textContent='Recovered 06:58 by Tupelo PD · load intact · seal 04418 replaced';};live?later(f,500):f();}}
     ]};
   const ACTS=[['⚑','Notify law enforcement','Share live position with the nearest agency, updating every 10 s'],['$','Notify insurer','Open claim NV-2291 with the evidence package'],['▣','Prepare evidence package','Photos, video, GPS trail, BOL, pickup record'],['✉','Notify shipper and consignee','Status update with ETA impact'],['☎','Driver welfare check','Call and cab alert to M. Reyes']];
-  const FILES=[['Door photos · 4 frames','1.8 MB'],['Live video clip · 02:32–02:36','24 MB'],['GPS trail · 812 mi','0.4 MB'],['BOL 7741-TX + seal 04418','0.2 MB'],['Biometric pickup record','0.1 MB'],['Blocked reroute emails · 2','0.1 MB']];
+  const FILES=[['Door photos · 4 frames','1.8 MB'],['Live evidence clip · 02:32–02:36','24 MB'],['GPS trail · 812 mi','0.4 MB'],['BOL 7741-TX + seal 04418','0.2 MB'],['Biometric pickup record','0.1 MB'],['Blocked reroute emails · 2','0.1 MB']];
   function addAct(a,i){const d=document.createElement('div');d.className='act2';d.dataset.i=i;d.innerHTML=`<span class="ic">${a[0]}</span><div><b>${a[1]}</b><span>${a[2]}</span></div><button type="button">Approve</button>`;
     d.querySelector('button').addEventListener('click',()=>doAct(i));$('#xActs').appendChild(d);}
   function doAct(i){const d=root&&root.querySelector(`.act2[data-i="${i}"]`);if(!d||d.classList.contains('done'))return;d.classList.add('done');
